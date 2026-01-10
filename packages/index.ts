@@ -24,7 +24,7 @@ export class Stomp {
     return Autowired.get<StompServer>(className);
   }
 
-  public static publish(destination: string, body: string, headers: Record<string, string> = {}) {
+  public static send(destination: string, body: string, headers: Record<string, string> = {}) {
     this.get()?.send(destination, body, headers);
   }
 

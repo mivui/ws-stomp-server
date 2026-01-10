@@ -77,12 +77,12 @@ import { Stomp } from 'ws-stomp-server';
 
 const app = express();
 app.get('/send', (_, res) => {
-  Stomp.publish('/topic/test', JSON.stringify({ name: 'hello word!' }));
+  Stomp.send('/topic/something', 'payload');
   res.status(200).json({});
 });
 const server = app.listen(8080);
 Stomp.server(server, '/ws');
-Stomp.subscribe('/topic/test', (message) => {
+Stomp.subscribe('/topic/greetings', (message) => {
   console.log(message.body);
 });
 ```
@@ -95,10 +95,10 @@ import { Client } from '@stomp/stompjs';
 const client = new Client({
   brokerURL: 'ws://localhost:8080/ws',
   onConnect: () => {
-    client.subscribe('/topic/test', (message) => {
+    client.publish({ destination: '/topic/greetings', body: 'Hello Word!' });
+    client.subscribe('/topic/something', (message) => {
       console.log(message.body);
     });
-    client.publish({ destination: '/topic/test', body: 'First Message' });
   },
 });
 client.activate();

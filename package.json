@@ -1,6 +1,6 @@
 {
   "name": "ws-stomp-server",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "ws-stomp-server",
   "type": "module",
   "main": "./dist/index.js",
