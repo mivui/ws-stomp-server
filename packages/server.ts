@@ -1,6 +1,6 @@
+import crypto from 'crypto';
 import { type Server as HTTPServer } from 'http';
 import { type Server as HTTPSServer } from 'https';
-import { v4 as uuid } from 'uuid';
 import WebSocket from 'ws';
 import { WebSocketServer } from 'ws';
 
@@ -158,7 +158,7 @@ export class StompServer {
           StompCommand.MESSAGE,
           {
             destination,
-            'message-id': uuid(),
+            'message-id': crypto.randomUUID(),
             timestamp: `${Date.now()}`,
             subscription: sub.id,
             ...headers,
