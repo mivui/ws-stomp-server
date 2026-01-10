@@ -1,0 +1,56 @@
+{
+  "name": "ws-stomp-server",
+  "version": "1.0.1",
+  "description": "ws-stomp-server",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "eslint": "eslint --fix **/*.{ts,js}",
+    "rollup": "rollup -c rollup.config.js",
+    "build": "npm run rollup"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "dependencies": {
+    "uuid": "^13.0.0",
+    "ws": "^8.19.0",
+    "@types/ws": "^8.18.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/node": "^25.0.3",
+    "rollup": "^4.55.1",
+    "rollup-plugin-dts": "^6.3.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint-standard": "^9.75.0"
+  },
+  "author": "mivui",
+  "license": "MIT",
+  "keywords": [
+    "stomp",
+    "ws",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mivui/ws-stomp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mivui/ws-stomp-server/issues"
+  },
+  "homepage": "https://github.com/mivui/ws-stomp-server#readme"
+}
