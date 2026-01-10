@@ -1,6 +1,6 @@
 {
   "name": "ws-stomp-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ws-stomp-server",
   "type": "module",
   "main": "./dist/index.js",
@@ -9,10 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "test": "vitest",
-    "eslint": "eslint --fix **/*.{ts,js}",
-    "rollup": "rollup -c rollup.config.js",
-    "build": "npm run rollup"
+    "build": "rollup -c rollup.config.js"
   },
   "exports": {
     ".": {
