@@ -35,13 +35,13 @@ Stomp.server(server, '/ws');
 // ws://lcalhost/ws
 ```
 
-### publish
+### send
 
 ```ts
 import { Stomp } from 'ws-stomp-server';
 
 function publish() {
-  Stomp.publish('/example', JSON.stringify({ name: 'example' }), { token: 'example' });
+  Stomp.send('/example', JSON.stringify({ name: 'example' }), { token: 'example' });
 }
 ```
 
@@ -95,7 +95,7 @@ import { Client } from '@stomp/stompjs';
 const client = new Client({
   brokerURL: 'ws://localhost:8080/ws',
   onConnect: () => {
-    client.publish({ destination: '/topic/greetings', body: 'Hello Word!' });
+    client.publish({ destination: '/topic/greetings', body: 'Hello World!' });
     client.subscribe('/topic/something', (message) => {
       console.log(message.body);
     });
