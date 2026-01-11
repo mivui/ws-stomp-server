@@ -57,7 +57,7 @@ function subscribe() {
 }
 ```
 
-### subscribe
+### unsubscribe
 
 ```ts
 import { Stomp } from 'ws-stomp-server';
