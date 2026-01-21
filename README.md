@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/ws-stomp.svg?style=flat-square)](https://www.npmjs.com/package/ws-stomp)
 [![Alt](https://img.shields.io/npm/dt/ws-stomp?style=flat-square)](https://npmcharts.com/compare/ws-stomp?minimal=true)
-![Alt](https://img.shields.io/github/license/mivui/ws-stomp?style=flat-square)
+![Alt](https://img.shields.io/github/license/mivui/node-ws-stomp?style=flat-square)
 
 ### ws-stomp is a simple Node.js server base on websocket stomp
 

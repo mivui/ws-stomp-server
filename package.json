@@ -1,6 +1,6 @@
 {
   "name": "ws-stomp",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "ws-stomp is a simple Node.js server base on websocket stomp",
   "type": "module",
   "main": "dist/index.cjs.js",
