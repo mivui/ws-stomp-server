@@ -4,7 +4,7 @@
 [![Alt](https://img.shields.io/npm/dt/ws-stomp?style=flat-square)](https://npmcharts.com/compare/ws-stomp?minimal=true)
 ![Alt](https://img.shields.io/github/license/mivui/ws-stomp?style=flat-square)
 
-## ws-stomp is a simple Node.js server based on websocket STOMP.
+### ws-stomp is a simple Node.js server base on websocket stomp
 
 ### install
 
