@@ -8,7 +8,7 @@ import { StompServer } from './server.js';
 
 const className = 'stompServer';
 
-export class Stomp {
+export default class Stomp {
   private constructor() {}
 
   public static server(
@@ -20,19 +20,18 @@ export class Stomp {
     Autowired.register(className, stomp);
   }
 
-  private static get() {
-    return Autowired.get<StompServer>(className);
-  }
-
   public static send(destination: string, body: string, headers: Record<string, string> = {}) {
-    this.get()?.send(destination, body, headers);
+    const server = Autowired.get<StompServer>(className);
+    server?.send(destination, body, headers);
   }
 
   public static subscribe(destination: string, callback: (frame: StompFrame) => void) {
-    this.get()?.subscribe(destination, callback);
+    const server = Autowired.get<StompServer>(className);
+    server?.subscribe(destination, callback);
   }
 
   public static unsubscribe(destination: string) {
-    this.get()?.unsubscribe(destination);
+    const server = Autowired.get<StompServer>(className);
+    server?.unsubscribe(destination);
   }
 }

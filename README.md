@@ -1,57 +1,46 @@
-# ws-stomp-server
+# ws-stomp
 
-[![npm version](https://img.shields.io/npm/v/ws-stomp-server.svg?style=flat-square)](https://www.npmjs.com/package/ws-stomp-server)
-[![Alt](https://img.shields.io/npm/dt/ws-stomp-server?style=flat-square)](https://npmcharts.com/compare/ws-stomp-server?minimal=true)
-![Alt](https://img.shields.io/github/license/mivui/ws-stomp-server?style=flat-square)
+[![npm version](https://img.shields.io/npm/v/ws-stomp.svg?style=flat-square)](https://www.npmjs.com/package/ws-stomp)
+[![Alt](https://img.shields.io/npm/dt/ws-stomp?style=flat-square)](https://npmcharts.com/compare/ws-stomp?minimal=true)
+![Alt](https://img.shields.io/github/license/mivui/ws-stomp?style=flat-square)
 
-## ws-stomp-server is a simple ws stomp server
+## ws-stomp is a simple Node.js server based on websocket STOMP.
 
 ### install
 
 ```shell
-npm i ws-stomp-server
+npm i ws-stomp
 ```
 
 ### http
 
 ```ts
 import { createServer } from 'http';
-import { Stomp } from 'ws-stomp-server';
+import wsstomp from 'ws-stomp';
 
 const server = createServer();
-Stomp.server(server, '/ws');
-// ws://lcalhost/ws
-```
-
-### express
-
-```ts
-import express from 'express';
-import { Stomp } from 'ws-stomp-server';
-
-const app = express();
-const server = app.listen();
-Stomp.server(server, '/ws');
-// ws://lcalhost/ws
+wsstomp.server(server, '/ws');
+server.listen(3000);
+// ws://lcalhost:3000/ws
 ```
 
 ### send
 
 ```ts
-import { Stomp } from 'ws-stomp-server';
+import wsstomp from 'ws-stomp';
 
 function publish() {
-  Stomp.send('/example', JSON.stringify({ name: 'example' }), { token: 'example' });
+  wsstomp.send('/topic/something', JSON.stringify({ name: 'name' }), { token: 'token' });
 }
 ```
 
 ### subscribe
 
 ```ts
-import { Stomp } from 'ws-stomp-server';
+import wsstomp from 'ws-stomp';
 
 function subscribe() {
-  Stomp.subscribe('/example', (e) => {
+  wsstomp.subscribe('/topic/greetings', (e) => {
     const body = e.body;
   });
 }
@@ -60,10 +49,10 @@ function subscribe() {
 ### unsubscribe
 
 ```ts
-import { Stomp } from 'ws-stomp-server';
+import wsstomp from 'ws-stomp';
 
 function unsubscribe() {
-  Stomp.unsubscribe('/example');
+  wsstomp.unsubscribe('/topic/greetings');
 }
 ```
 
@@ -73,16 +62,16 @@ function unsubscribe() {
 
 ```ts
 import express from 'express';
-import { Stomp } from 'ws-stomp-server';
+import wsstomp from 'ws-stomp';
 
 const app = express();
 app.get('/send', (_, res) => {
-  Stomp.send('/topic/something', 'payload');
+  wsstomp.send('/topic/something', 'payload');
   res.status(200).json({});
 });
-const server = app.listen(8080);
-Stomp.server(server, '/ws');
-Stomp.subscribe('/topic/greetings', (message) => {
+const server = app.listen(3000);
+wsstomp.server(server, '/ws');
+wsstomp.subscribe('/topic/greetings', (message) => {
   console.log(message.body);
 });
 ```
@@ -93,7 +82,7 @@ Stomp.subscribe('/topic/greetings', (message) => {
 import { Client } from '@stomp/stompjs';
 
 const client = new Client({
-  brokerURL: 'ws://localhost:8080/ws',
+  brokerURL: 'ws://lcalhost:3000/ws',
   onConnect: () => {
     client.publish({ destination: '/topic/greetings', body: 'Hello World!' });
     client.subscribe('/topic/something', (message) => {
